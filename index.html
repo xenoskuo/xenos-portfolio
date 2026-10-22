@@ -229,6 +229,7 @@ body.old nav a[href="#contact"],body.old .mm a[href="#contact"]{display:none!imp
 .note .desc{max-height:calc(1.75em * 3);overflow:hidden;margin:0;padding:0;font-size:14px;line-height:1.75;-webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent);transition:max-height .35s ease}
 .note .desc p{margin:0 0 6px;white-space:pre-wrap}
 .note.open .desc{max-height:none;-webkit-mask-image:none;mask-image:none}
+.card.reading,.card.reading:hover,body:not(.old) .card.reading:hover{transform:none!important;box-shadow:none!important;border-color:var(--line)!important;transition:none}.card.reading:hover .shot img{transform:scale(1.08)}.card.reading:before,.card.reading:after,.card.reading:hover:before,.card.reading:hover:after{opacity:0!important}
 .note .more{all:unset;cursor:pointer;margin-top:8px;display:inline-flex;gap:6px;align-items:center;font-size:13px;font-weight:600;color:var(--gold);letter-spacing:.05em}
 .note .more:after{content:"▾";transition:transform .25s}.note.open .more:after{transform:rotate(180deg)}
 .note .more:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
@@ -375,7 +376,7 @@ gsap.utils.toArray('.tl').forEach(t=>gsap.from(t,{x:-40,opacity:0,duration:.7,ea
 counts.forEach(c=>{const o={v:0},n=+c.dataset.count;gsap.to(o,{v:n,duration:1.8,ease:'power2.out',scrollTrigger:{trigger:c,start:'top 90%'},onUpdate:()=>c.textContent=Math.round(o.v)+(n==10?'+':'')})});
 // hover tilt+glow, magnetic
 if(!touch){document.querySelectorAll('.card,.acard').forEach(c=>{const rx=gsap.quickTo(c,'rotationX',{duration:.4}),ry=gsap.quickTo(c,'rotationY',{duration:.4});gsap.set(c,{transformPerspective:900});
-c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%');ry((x-.5)*8);rx((.5-y)*8)});
+c.addEventListener('pointermove',e=>{if(c.classList.contains('reading'))return;const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%');ry((x-.5)*8);rx((.5-y)*8)});
 c.addEventListener('pointerleave',()=>{rx(0);ry(0)})});
 document.querySelectorAll('.btn,.play-btn,.ftabs button').forEach(b=>{const qx=gsap.quickTo(b,'x',{duration:.4,ease:'power3'}),qy=gsap.quickTo(b,'y',{duration:.4,ease:'power3'});
 b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();qx((e.clientX-r.left-r.width/2)*.3);qy((e.clientY-r.top-r.height/2)*.4)});b.addEventListener('pointerleave',()=>{qx(0);qy(0)})})}
@@ -445,7 +446,7 @@ const mv=()=>{gx+=(tx-gx)*.25;gy+=(ty-gy)*.25;g.style.transform=`translate(${gx}
 addEventListener('pointermove',e=>{if(old()||e.pointerType!='mouse')return;tx=e.clientX;ty=e.clientY;g.classList.add('on');if(!gr)gr=requestAnimationFrame(mv);
 const d=Math.hypot(tx-lx,ty-ly);if(d>14){lx=tx;ly=ty;add({x:tx,y:ty,vx:(Math.random()-.5)*.6,vy:Math.random()*.4+.1,g:.01,l:.8,d:.025,z:Math.random()*1.6+.6,c:C[Math.random()*4|0],s:Math.random()<.25,r:0})}},{passive:true});
 document.addEventListener('pointerleave',()=>g.classList.remove('on'));
-document.addEventListener('pointerover',e=>g.classList.toggle('hot',!!e.target.closest('a,button,.card')))}
+document.addEventListener('pointerover',e=>g.classList.toggle('hot',!!e.target.closest('a,button,.card:not(.reading)')))}
 /* mobile tap ripple on cards */
 document.querySelectorAll('.card').forEach(c=>c.addEventListener('pointerdown',e=>{if(e.pointerType=='mouse'||old()||rm)return;const r=c.getBoundingClientRect(),s=Math.max(r.width,r.height)*1.4,x=document.createElement('span');x.className='rip';x.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-r.left-s/2}px;top:${e.clientY-r.top-s/2}px`;c.appendChild(x);setTimeout(()=>x.remove(),650)},{passive:true}));
 /* timeline LV checkpoints */
@@ -536,7 +537,7 @@ addEventListener('DOMContentLoaded',()=>{const T=x=>(window.__t||(y=>y))(x);
 document.querySelectorAll('figcaption details').forEach(d=>{const desc=d.querySelector('.desc');if(!desc)return;const n=document.createElement('div');n.className='note';
 const h=document.createElement('h5');h.textContent=T('設計說明');const b=document.createElement('button');b.type='button';b.className='more';b.setAttribute('aria-expanded','false');b.textContent=T('展開全文');
 n.append(h,desc,b);d.replaceWith(n);
-b.onclick=()=>{const o=!n.classList.contains('open');n.classList.toggle('open',o);b.setAttribute('aria-expanded',o);b.textContent=T(o?'收合':'展開全文');window.ScrollTrigger&&ScrollTrigger.refresh()}});
+b.onclick=()=>{const o=!n.classList.contains('open');n.classList.toggle('open',o);b.setAttribute('aria-expanded',o);b.textContent=T(o?'收合':'展開全文');const cd=n.closest('.card');if(cd){cd.classList.toggle('reading',o);if(o&&window.gsap)gsap.to(cd,{rotationX:0,rotationY:0,duration:.3});if(!o&&window.gsap)gsap.set(cd,{clearProps:'transform'});gsap.set(cd,{transformPerspective:900})}window.ScrollTrigger&&ScrollTrigger.refresh()}});
 // lightbox notes panel
 const lb=document.getElementById('lb'),li=lb.querySelector('img'),np=lb.querySelector('.np'),nb=np.querySelector('.nb'),nt=np.querySelector('.nt'),nts=np.querySelector('.nts');
 const setSheet=o=>{np.classList.toggle('open',o);nt.setAttribute('aria-expanded',o);nts.textContent=T(o?'收合':'展開')};
