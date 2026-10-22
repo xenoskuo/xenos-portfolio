@@ -127,7 +127,7 @@ body.old .shot{background:#e6dece}
 body.old #lb{background:rgba(239,232,218,.97)}body.old #lb button{color:var(--txt)}
 @media (max-width:760px){.mode{margin:14px 24px;align-self:flex-start}body.old .links{background:rgba(239,232,218,.98)}.arch{padding-top:100px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}*{animation:none!important}.hero .bgl{transform:none!important}}
-</style><style>.play-btn{display:inline-block;margin-top:18px;padding:12px 28px;border-radius:999px;background:linear-gradient(135deg,#f6e7b0,#d9b45a);color:#0b1630;font-weight:700;text-decoration:none;letter-spacing:.05em;box-shadow:0 6px 24px rgba(246,231,176,.35);transition:transform .25s,box-shadow .25s}.play-btn:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(246,231,176,.55)}</style></head><body><div id="prog"></div><div id="wipe"></div>
+body.back:not(.old) .hero .rv,body.back:not(.old) .hero .av,body.back:not(.old) .hero .btn{opacity:1!important;transform:none!important}</style><style>.play-btn{display:inline-block;margin-top:18px;padding:12px 28px;border-radius:999px;background:linear-gradient(135deg,#f6e7b0,#d9b45a);color:#0b1630;font-weight:700;text-decoration:none;letter-spacing:.05em;box-shadow:0 6px 24px rgba(246,231,176,.35);transition:transform .25s,box-shadow .25s}.play-btn:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(246,231,176,.55)}</style></head><body><div id="prog"></div><div id="wipe"></div>
 <nav class="top" id="nav"><div class="wrap"><a class="logo" href="#top">Xenos 郭吉峰</a>
 <button class="burger" aria-label="選單" aria-expanded="false"><span></span><span></span><span></span></button>
 <div class="links"><a href="#about">About</a><a href="#exp">Experience</a><a href="#app">App</a><a href="#web">Web</a><a href="#game">Game UI</a><a href="#meow">Game Design</a><a href="#events">Events</a><a href="#banner">Banner</a><a href="#contact">Contact</a><button class="mode" id="mode" aria-pressed="false">舊作品</button></div></div></nav>
@@ -245,7 +245,7 @@ addEventListener('load',()=>ScrollTrigger.refresh());
 addEventListener('DOMContentLoaded',()=>{
 const btn=document.getElementById('mode'),wipe=document.getElementById('wipe'),nav=document.getElementById('nav'),rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isOld=()=>document.body.classList.contains('old');
-const apply=o=>{document.body.classList.toggle('old',o);btn.textContent=o?'新作品':'舊作品';btn.setAttribute('aria-pressed',o);document.title=o?'Xenos 郭吉峰｜舊作品 Archive':'Xenos 郭吉峰｜視覺 ＆ UI 介面設計師 Portfolio';
+const apply=o=>{document.body.classList.toggle('old',o);if(!o)document.body.classList.add('back');btn.textContent=o?'新作品':'舊作品';btn.setAttribute('aria-pressed',o);document.title=o?'Xenos 郭吉峰｜舊作品 Archive':'Xenos 郭吉峰｜視覺 ＆ UI 介面設計師 Portfolio';
 window.__lenis?__lenis.scrollTo(0,{immediate:true}):scrollTo(0,0);
 if(window.ScrollTrigger){ScrollTrigger.refresh();if(o&&!rm){gsap.fromTo('.atitle .ch',{yPercent:120,rotate:6},{yPercent:0,rotate:0,duration:1,stagger:.06,ease:'power4.out'});gsap.fromTo('.ahero .kicker,.alead',{y:20,opacity:0},{y:0,opacity:1,duration:.8,stagger:.15,delay:.3})}}};
 const go=o=>{if(o==isOld())return;nav.classList.remove('m');document.querySelector('.burger').setAttribute('aria-expanded',false);
