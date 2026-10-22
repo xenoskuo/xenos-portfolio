@@ -155,7 +155,40 @@ body.old #toTop{background:#fbf7ef;border-color:var(--gold);color:var(--gold);bo
 body:has(#lb.o) #toTop{opacity:0!important;visibility:hidden!important}
 @media (max-width:760px){#toTop{width:46px;height:46px}}
 @media (prefers-reduced-motion:reduce){#toTop,#toTop.on{transition:opacity .2s,visibility 0s;transform:none}#toTop.go svg,#toTop .fl{animation:none}}
-</style><style>.play-note{display:flex;align-items:center;gap:8px;margin:12px 0 0;font-size:13px;line-height:1.6;color:var(--mute);letter-spacing:.02em}.play-note svg{flex:0 0 auto;color:var(--gold2)}</style><style>.logo{white-space:nowrap}@media (max-width:760px){nav .wrap{gap:8px}.tools{gap:4px}.qi{width:30px;height:30px}.qi svg{width:16px;height:16px}.lang{min-width:36px;height:30px;padding:0 8px}}</style><style>body:not(.old){background:linear-gradient(180deg,rgba(13,26,47,.35),rgba(6,11,22,0) 40%,rgba(13,26,47,.3)),url(img/grain.webp) 0 0/256px 256px repeat,#060b16;background-attachment:fixed,scroll,scroll}body:not(.old):before{display:none}</style></head><body><div id="prog"></div><div id="wipe"></div>
+</style><style>.play-note{display:flex;align-items:center;gap:8px;margin:12px 0 0;font-size:13px;line-height:1.6;color:var(--mute);letter-spacing:.02em}.play-note svg{flex:0 0 auto;color:var(--gold2)}</style><style>.logo{white-space:nowrap}@media (max-width:760px){nav .wrap{gap:8px}.tools{gap:4px}.qi{width:30px;height:30px}.qi svg{width:16px;height:16px}.lang{min-width:36px;height:30px;padding:0 8px}}</style><style>body:not(.old){background:linear-gradient(180deg,rgba(13,26,47,.35),rgba(6,11,22,0) 40%,rgba(13,26,47,.3)),url(img/grain.webp) 0 0/256px 256px repeat,#060b16;background-attachment:fixed,scroll,scroll}body:not(.old):before{display:none}</style><style>
+/* ===== game layer (new mode only) ===== */
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:85}
+#cglow{position:fixed;left:0;top:0;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;pointer-events:none;z-index:86;background:radial-gradient(circle,rgba(246,231,176,.55),rgba(246,231,176,0) 70%);mix-blend-mode:screen;opacity:0;transition:opacity .3s,width .25s,height .25s,margin .25s}
+#cglow.on{opacity:1}#cglow.hot{width:54px;height:54px;margin:-27px 0 0 -27px}
+body.old #cglow,body.old #fx{display:none}
+body:not(.old) .card{--fx:0}
+body:not(.old) .card:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;opacity:0;transition:opacity .35s;mix-blend-mode:color-dodge;background:linear-gradient(115deg,transparent 20%,rgba(255,215,140,.28) 36%,rgba(140,220,255,.22) 44%,rgba(255,150,220,.2) 52%,transparent 66%);background-size:250% 250%;background-position:calc(100% - var(--mx)) calc(100% - var(--my))}
+body:not(.old) .card:hover:before{opacity:1}
+body:not(.old) .card:hover{border-color:rgba(246,231,176,.65);box-shadow:0 0 0 1px rgba(246,231,176,.35),0 0 28px -4px rgba(246,231,176,.45),0 30px 60px -30px rgba(0,0,0,.8)}
+.rip{position:absolute;border-radius:50%;pointer-events:none;z-index:3;background:radial-gradient(circle,rgba(246,231,176,.45),rgba(246,231,176,0) 70%);transform:scale(0);animation:rip .6s ease-out forwards}@keyframes rip{to{transform:scale(1);opacity:0}}
+.lv{display:inline-block;font:700 10px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.12em;padding:4px 7px;margin-bottom:6px;border:1px solid var(--line);border-radius:4px;color:var(--mute);transition:.5s;vertical-align:middle}
+.when .lv{display:table;margin-left:auto}@media (max-width:760px){.when .lv{margin-left:0}}
+body:not(.old) .tl.lit .lv{color:#0b1324;background:var(--gold);border-color:var(--gold);box-shadow:0 0 14px rgba(246,231,176,.55)}
+body:not(.old) .tl:before{transition:box-shadow .5s,background .5s,transform .5s;background:#3a4a66}
+body:not(.old) .tl.lit:before{background:var(--gold);box-shadow:0 0 0 5px rgba(246,231,176,.15),0 0 16px 3px rgba(246,231,176,.6);transform:scale(1.15)}
+body:not(.old) .tlline{box-shadow:0 0 10px 1px rgba(246,231,176,.55)}
+.xp{display:block;height:6px;margin:10px auto 6px;max-width:150px;border-radius:3px;background:rgba(255,255,255,.07);border:1px solid var(--line);overflow:hidden;position:relative}
+.xp i{position:absolute;inset:0;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,var(--gold2),var(--gold));box-shadow:0 0 10px var(--gold);transition:transform 1.8s cubic-bezier(.2,.7,.2,1)}
+.stat.full .xp i{transform:scaleX(1)}
+.xpl{display:block;font:700 9px/1 ui-monospace,Menlo,monospace;letter-spacing:.25em;color:var(--gold2);opacity:.7;margin-bottom:2px}
+body.old .xp,body.old .xpl,body.old .lv{display:none}
+body:not(.old) .sh h2.glitch{animation:gl .55s steps(2,end) 1}
+@keyframes gl{0%{text-shadow:3px 0 rgba(255,80,120,.7),-3px 0 rgba(80,220,255,.7);clip-path:inset(0 0 60% 0)}25%{text-shadow:-2px 0 rgba(255,80,120,.7),2px 0 rgba(80,220,255,.7);clip-path:inset(40% 0 0 0)}50%{text-shadow:1px 0 rgba(255,80,120,.5),-1px 0 rgba(80,220,255,.5);clip-path:inset(0)}100%{text-shadow:none;clip-path:inset(0)}}
+#toasts{position:fixed;top:78px;right:16px;z-index:95;display:grid;gap:10px;pointer-events:none;max-width:min(340px,calc(100vw - 32px))}
+.toast{pointer-events:auto;display:flex;gap:12px;align-items:center;padding:12px 16px 12px 12px;border-radius:12px;background:rgba(10,20,38,.94);border:1px solid rgba(246,231,176,.45);box-shadow:0 12px 40px -10px rgba(0,0,0,.8),0 0 20px -6px rgba(246,231,176,.4);color:var(--txt);font-size:13px;line-height:1.45;transform:translateX(120%);opacity:0;transition:transform .5s cubic-bezier(.2,.9,.25,1.2),opacity .4s;backdrop-filter:blur(8px)}
+.toast.in{transform:none;opacity:1}
+.toast .ic{flex:0 0 36px;height:36px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,#f6e7b0,#c99a3f);color:#0b1324;font-size:18px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
+.toast small{display:block;font:700 10px/1.2 ui-monospace,Menlo,monospace;letter-spacing:.18em;color:var(--gold);margin-bottom:2px}
+.toast a{color:var(--gold);font-weight:700}
+body.old .toast{background:#fbf7ef;color:var(--txt);border-color:var(--gold);box-shadow:4px 4px 0 rgba(42,36,29,.15)}body.old .toast .ic{background:var(--gold);color:#fff}body.old .toast small{color:var(--gold)}
+@media (max-width:760px){#toasts{top:72px;right:12px;left:12px;max-width:none;justify-items:end}}
+@media (prefers-reduced-motion:reduce){.toast{transition:opacity .2s;transform:none}body:not(.old) .sh h2.glitch{animation:none}.xp i{transition:none}#cglow,#fx{display:none}}
+</style></head><body><div id="prog"></div><div id="wipe"></div>
 <nav class="top" id="nav"><div class="wrap"><a class="logo" href="#top">Xenos 郭吉峰</a>
 <div class="tools"><a class="qi" href="mailto:xenosk7@gmail.com" aria-label="Email xenosk7@gmail.com" title="xenosk7@gmail.com"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a><a class="qi" href="tel:0933467533" aria-label="電話 0933-467-533" title="0933-467-533"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></a><a class="qi" href="Xenos_Kuo_Resume.pdf" download target="_blank" rel="noopener" aria-label="下載履歷" title="下載履歷"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 11v6M9.5 14.5 12 17l2.5-2.5"/></svg></a><button class="lang" id="lang" type="button" aria-label="Switch to English">EN</button></div><button class="burger" aria-label="選單" aria-expanded="false"><span></span><span></span><span></span></button>
 <div class="links"><a href="#about">About</a><a href="#exp">Experience</a><a href="#works">Works</a><a href="#contact">Contact</a><button class="mode" id="mode" aria-pressed="false">舊作品</button></div></div></nav>
@@ -185,7 +218,7 @@ body:has(#lb.o) #toTop{opacity:0!important;visibility:hidden!important}
 <footer id="contact"><div class="wrap rv"><span class="kicker">End</span><h2>Thank You</h2><p>Xenos 郭吉峰・視覺與 UI 介面設計師</p>
 <div class="cta"><a class="btn f" href="mailto:xenosk7@gmail.com">xenosk7@gmail.com</a><a class="btn" href="tel:0933467533">0933-467-533</a><a class="btn" href="Xenos_Kuo_Resume.pdf" download target="_blank" rel="noopener">下載履歷</a><a class="btn" id="footMode" href="#archive">舊作品</a></div>
 <p style="margin-top:40px;font-size:13px">© 2026 Xenos Kuo</p></div></footer>
-<button id="toTop" type="button" aria-label="回到最上面"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path class="fl" d="M10.3 18.2 12 22l1.7-3.8z" fill="currentColor" stroke="none"/><path d="M12 2.5c3 2.2 4.4 5.6 4.2 10.3L14.6 17H9.4l-1.6-4.2C7.6 8.1 9 4.7 12 2.5z"/><circle cx="12" cy="9.5" r="1.8"/><path d="M7.9 12.6 5 15.5V18l3.6-1.6M16.1 12.6 19 15.5V18l-3.6-1.6"/></svg></button><div id="lb" role="dialog" aria-modal="true"><button class="x" aria-label="關閉">✕</button><button class="p" aria-label="上一張">‹</button><img loading="lazy" decoding="async" alt=""><button class="n" aria-label="下一張">›</button><div class="c"></div></div>
+<button id="toTop" type="button" aria-label="回到最上面"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true"><path class="fl" d="M10.3 18.2 12 22l1.7-3.8z" fill="currentColor" stroke="none"/><path d="M12 2.5c3 2.2 4.4 5.6 4.2 10.3L14.6 17H9.4l-1.6-4.2C7.6 8.1 9 4.7 12 2.5z"/><circle cx="12" cy="9.5" r="1.8"/><path d="M7.9 12.6 5 15.5V18l3.6-1.6M16.1 12.6 19 15.5V18l-3.6-1.6"/></svg></button><canvas id="fx" aria-hidden="true"></canvas><div id="cglow" aria-hidden="true"></div><div id="toasts" aria-live="polite"></div><div id="lb" role="dialog" aria-modal="true"><button class="x" aria-label="關閉">✕</button><button class="p" aria-label="上一張">‹</button><img loading="lazy" decoding="async" alt=""><button class="n" aria-label="下一張">›</button><div class="c"></div></div>
 <script>
 if('scrollRestoration' in history)history.scrollRestoration='manual';
 (()=>{const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,nav=document.getElementById('nav');
@@ -312,4 +345,50 @@ addEventListener('DOMContentLoaded',()=>{const b=document.getElementById('toTop'
 const chk=()=>b.classList.toggle('on',(window.scrollY||document.documentElement.scrollTop)>600);addEventListener('scroll',chk,{passive:true});chk();setInterval(chk,400);
 b.onclick=()=>{if(!rm){b.classList.remove('go');void b.offsetWidth;b.classList.add('go');setTimeout(()=>b.classList.remove('go'),1300)}
 const l=window.__lenis;if(l&&!rm)l.scrollTo(0,{duration:1.2});else scrollTo({top:0,behavior:rm?'auto':'smooth'})}});
+</script><script>
+addEventListener('DOMContentLoaded',()=>{
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,fine=matchMedia('(pointer:fine)').matches,old=()=>document.body.classList.contains('old'),EN=()=>document.documentElement.lang=='en';
+/* fx canvas */
+const cv=document.getElementById('fx'),cx=cv.getContext('2d');let W=0,H=0,P=[],raf=0;
+const rs=()=>{const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*d;cv.height=H*d;cx.setTransform(d,0,0,d,0,0)};rs();addEventListener('resize',rs);
+const loop=()=>{cx.clearRect(0,0,W,H);for(let i=P.length-1;i>=0;i--){const p=P[i];p.x+=p.vx;p.y+=p.vy;p.vy+=p.g;p.vx*=.98;p.l-=p.d;if(p.l<=0){P.splice(i,1);continue}
+cx.globalAlpha=p.l;cx.fillStyle=p.c;if(p.s){cx.save();cx.translate(p.x,p.y);cx.rotate(p.r+=.1);cx.beginPath();for(let k=0;k<4;k++){cx.lineTo(0,-p.z);cx.rotate(Math.PI/4);cx.lineTo(0,-p.z*.35);cx.rotate(Math.PI/4)}cx.closePath();cx.fill();cx.restore()}else{cx.beginPath();cx.arc(p.x,p.y,p.z,0,6.283);cx.fill()}}
+cx.globalAlpha=1;raf=P.length?requestAnimationFrame(loop):0};
+const add=p=>{if(P.length>260)P.shift();P.push(p);if(!raf)raf=requestAnimationFrame(loop)};
+const C=['#f6e7b0','#ffd98a','#fff4d0','#d9b86a'];
+/* cursor trail + glow (desktop) */
+if(fine&&!rm){const g=document.getElementById('cglow');let lx=0,ly=0,gx=0,gy=0,tx=0,ty=0,gr=0;
+const mv=()=>{gx+=(tx-gx)*.25;gy+=(ty-gy)*.25;g.style.transform=`translate(${gx}px,${gy}px)`;gr=Math.abs(tx-gx)+Math.abs(ty-gy)>.3?requestAnimationFrame(mv):0};
+addEventListener('pointermove',e=>{if(old()||e.pointerType!='mouse')return;tx=e.clientX;ty=e.clientY;g.classList.add('on');if(!gr)gr=requestAnimationFrame(mv);
+const d=Math.hypot(tx-lx,ty-ly);if(d>14){lx=tx;ly=ty;add({x:tx,y:ty,vx:(Math.random()-.5)*.6,vy:Math.random()*.4+.1,g:.01,l:.8,d:.025,z:Math.random()*1.6+.6,c:C[Math.random()*4|0],s:Math.random()<.25,r:0})}},{passive:true});
+document.addEventListener('pointerleave',()=>g.classList.remove('on'));
+document.addEventListener('pointerover',e=>g.classList.toggle('hot',!!e.target.closest('a,button,.card')))}
+/* mobile tap ripple on cards */
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('pointerdown',e=>{if(e.pointerType=='mouse'||old()||rm)return;const r=c.getBoundingClientRect(),s=Math.max(r.width,r.height)*1.4,x=document.createElement('span');x.className='rip';x.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-r.left-s/2}px;top:${e.clientY-r.top-s/2}px`;c.appendChild(x);setTimeout(()=>x.remove(),650)},{passive:true}));
+/* timeline LV checkpoints */
+const tls=[...document.querySelectorAll('.tl')],N=tls.length;
+tls.forEach((t,i)=>{const w=t.querySelector('.when');if(w){const b=document.createElement('span');b.className='lv';b.textContent='LV '+String(N-i).padStart(2,'0');w.prepend(b)}});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('lit');io.unobserve(e.target)}}),{rootMargin:'0px 0px -35% 0px'});tls.forEach(t=>io.observe(t));
+/* stats XP bars */
+document.querySelectorAll('.stat').forEach(s=>{const b=s.querySelector('b');const l=document.createElement('i');l.className='xp';l.innerHTML='<i></i>';b.after(l)});
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('full'),200);so.unobserve(e.target)}}),{threshold:.4});document.querySelectorAll('.stat').forEach(s=>so.observe(s));
+/* glitch titles */
+if(!rm){const go=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!old()){const h=e.target;setTimeout(()=>{h.classList.add('glitch');setTimeout(()=>h.classList.remove('glitch'),600)},250);go.unobserve(h)}}),{threshold:.6});document.querySelectorAll('.sh h2').forEach(h=>go.observe(h))}
+/* toasts */
+const box=document.getElementById('toasts');
+const toast=(zh,en,ic,html)=>{const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');
+t.innerHTML=`<span class="ic" aria-hidden="true">${ic||'★'}</span><div><small>${EN()?'ACHIEVEMENT UNLOCKED':'成就解鎖'}</small>${EN()?en:zh}${html?'<br>'+html():''}</div>`;box.appendChild(t);
+requestAnimationFrame(()=>requestAnimationFrame(()=>t.classList.add('in')));setTimeout(()=>{t.classList.remove('in');setTimeout(()=>t.remove(),600)},html?7000:4200)};
+const once=(k,f)=>{try{if(sessionStorage.getItem('ach-'+k))return;sessionStorage.setItem('ach-'+k,1)}catch(e){}f()};
+const watch=(el,k,zh,en,ic)=>{if(!el)return;const o=new IntersectionObserver(es=>{if(es[0].isIntersecting&&!old()){once(k,()=>toast(zh,en,ic));o.disconnect()}},{threshold:.15});o.observe(el)};
+watch(document.getElementById('works'),'works','進入作品集','Entered the Works','🎮');
+watch(document.getElementById('contact'),'end','全部作品瀏覽完成','All works viewed','🏆');
+new MutationObserver(()=>{if(old())once('old',()=>setTimeout(()=>toast('開啟舊作品・時光回溯','Past Works unlocked · Time travel','⏳'),900))}).observe(document.body,{attributes:true,attributeFilter:['class']});
+/* easter egg */
+const burst=(x,y)=>{if(rm)return;for(let i=0;i<90;i++){const a=Math.random()*6.283,v=Math.random()*6+2;add({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-2,g:.12,l:1,d:.012+Math.random()*.01,z:Math.random()*3+1.5,c:C[Math.random()*4|0],s:Math.random()<.5,r:0})}};
+const egg=(x,y)=>{burst(x??W/2,y??H/2);toast('發現隱藏彩蛋！','Secret found!','✨',()=>`<a href="https://stellar-rift-meow-v2.grok.me" target="_blank" rel="noopener">${EN()?'Play Stellar Rift Meow →':'來玩星隙喵 →'}</a>`)};
+const K=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let ki=0;
+addEventListener('keydown',e=>{const k=e.key.length==1?e.key.toLowerCase():e.key;ki=k==K[ki]?ki+1:(k==K[0]?1:0);if(ki==K.length){ki=0;egg()}});
+const av=document.querySelector('.hero .av');let taps=[];if(av)av.addEventListener('click',e=>{const n=Date.now();taps=taps.filter(t=>n-t<2000);taps.push(n);if(taps.length>=5){taps=[];const r=av.getBoundingClientRect();egg(r.left+r.width/2,r.top+r.height/2)}});
+});
 </script></body></html>
