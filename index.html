@@ -95,7 +95,7 @@ footer p{color:var(--mute)}
 .filters .wrap{display:flex;align-items:center;gap:18px}.ftabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px}.ftabs::-webkit-scrollbar{display:none}
 .ftabs button{flex:none;background:transparent;border:1px solid var(--line);color:var(--txt);padding:8px 16px;border-radius:999px;font:inherit;font-size:13px;letter-spacing:.06em;cursor:pointer;transition:.25s}
 .ftabs button:hover{border-color:var(--gold2)}.ftabs button.on{background:var(--gold);color:#0b1324;border-color:var(--gold)}
-.work.hide{display:none}
+
 .more{margin-top:64px;padding-top:40px;border-top:1px dashed var(--line)}.mh{font-size:22px;color:#fff;margin:0 0 32px}.mh span{display:block;font-size:12px;letter-spacing:.3em;color:var(--gold2);text-transform:uppercase}
 .card,.acard{position:relative;transform-style:preserve-3d;--mx:50%;--my:50%}
 .card:after,.acard:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(400px circle at var(--mx) var(--my),rgba(246,231,176,.16),transparent 45%);opacity:0;transition:opacity .3s}
@@ -258,7 +258,7 @@ body.old nav a[href="#contact"],body.old .mm a[href="#contact"]{display:none!imp
  #lb.hasn .c{bottom:62px}#lb.hasn .p,#lb.hasn .n{bottom:110px}
 }
 body.old #lb.hasn .np{background:#fbf7ef;border-color:var(--gold)}body.old #lb .nt{color:var(--gold)}
-</style><style>.fph{display:none}.fph.on{display:block}.filters.fix{position:fixed;top:0;left:0;right:0;z-index:60;padding:8px 0;background:rgba(6,11,22,.98);box-shadow:0 8px 24px -12px rgba(0,0,0,.8);animation:fin .25s ease}@keyframes fin{from{transform:translateY(-100%)}}.filters .fl{display:none;flex:none;font-family:inherit;font-weight:800;letter-spacing:.04em;color:var(--gold);font-size:17px;text-decoration:none;padding-right:14px;border-right:1px solid var(--line);line-height:1}.filters.fix .fl{display:inline-block}.filters .ftabs{min-width:0;scroll-behavior:smooth}nav.top{will-change:transform}body.wk nav.top:not(.m){transform:translateY(-110%);pointer-events:none}body.old .filters.fix{background:rgba(239,232,218,.98)}@media(max-width:760px){.filters.fix{padding:6px 0}.filters .fl{font-size:15px;padding-right:10px}.filters .wrap{gap:10px}}</style></head><body><div id="bgneb" aria-hidden="true"></div><canvas id="bgfx" aria-hidden="true"></canvas><div id="prog"></div><div id="wipe"></div>
+</style><style>.fph{display:none}.fph.on{display:block}.filters.fix{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(6,11,22,.98);box-shadow:0 8px 24px -12px rgba(0,0,0,.8);animation:fin .25s ease}@keyframes fin{from{transform:translateY(-100%)}}.filters .fl{display:none;flex:none;font-family:inherit;font-weight:800;letter-spacing:.04em;color:var(--gold);font-size:17px;text-decoration:none;padding-right:14px;border-right:1px solid var(--line);line-height:1}.filters.fix .fl{display:inline-block}.filters .ftabs{min-width:0;scroll-behavior:smooth}nav.top{will-change:transform}body.wk nav.top:not(.m){transform:translateY(-110%);pointer-events:none}body.old .filters.fix{background:rgba(239,232,218,.98)}@media(max-width:760px){.filters .fl{font-size:15px;padding-right:10px}.filters .wrap{gap:10px}}</style></head><body><div id="bgneb" aria-hidden="true"></div><canvas id="bgfx" aria-hidden="true"></canvas><div id="prog"></div><div id="wipe"></div>
 <nav class="top" id="nav"><div class="wrap"><a class="logo" href="#top" aria-label="Xenos 郭吉峰 Portfolio"><svg class="logo-svg" role="img" aria-label="Xenos" height="50" viewBox="0 0 236 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#logoclip)">
 <path d="M92.686 36.625L102.92 38.3333C101.589 42.0833 99.5085 44.9583 96.6797 46.9167C93.8509 48.875 90.2732 49.875 86.03 49.875C79.2907 49.875 74.2986 47.6667 71.0538 43.25C68.4745 39.7083 67.2265 35.25 67.2265 29.8333C67.2265 23.375 68.8905 18.3333 72.2602 14.7083C75.6298 11.0833 79.8731 9.25 85.0315 9.25C90.814 9.25 95.3485 11.1667 98.7181 15C102.046 18.8333 103.669 24.6667 103.502 32.5417H77.7514C77.8346 35.5833 78.6667 37.9583 80.2475 39.6667C81.8283 41.375 83.8251 42.2083 86.1548 42.2083C87.7772 42.2083 89.1084 41.75 90.2316 40.875C91.3548 40 92.1452 38.5833 92.7276 36.625H92.686ZM93.2685 26.25C93.1853 23.2917 92.4364 21 90.9804 19.4583C89.5244 17.9167 87.7356 17.125 85.6556 17.125C83.4091 17.125 81.5787 17.9583 80.0811 19.5833C78.5835 21.2083 77.9178 23.4583 77.9178 26.25H93.2685Z" fill="currentColor"/>
@@ -339,10 +339,7 @@ addEventListener('DOMContentLoaded',()=>{
 const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,touch=matchMedia('(hover:none),(pointer:coarse)').matches,mob=innerWidth<760;
 // filters
 const tabs=[...document.querySelectorAll('.ftabs button')],works=[...document.querySelectorAll('section.work')];
-tabs.forEach(b=>b.onclick=()=>{tabs.forEach(x=>x.classList.toggle('on',x==b));const f=b.dataset.f;
-works.forEach(w=>w.classList.toggle('hide',f!='all'&&w.id!=f));
-
-if(window.ScrollTrigger){ScrollTrigger.refresh();works.forEach(w=>{if(!w.classList.contains('hide'))gsap.fromTo(w.querySelectorAll('.card,.acard'),{opacity:0,y:40},{opacity:1,y:0,duration:.6,stagger:.04,ease:'power3.out',overwrite:true})})};requestAnimationFrame(()=>window.__worksTop&&window.__worksTop())});
+tabs.forEach(b=>b.onclick=()=>window.__worksGo&&window.__worksGo(b.dataset.f));
 // count-up fallback
 const counts=[...document.querySelectorAll('[data-count]')];
 if(rm||!window.gsap){counts.forEach(c=>c.textContent=c.dataset.count+(c.dataset.count=='10'?'+':''));return}
@@ -564,12 +561,16 @@ np.addEventListener('touchstart',e=>e.stopPropagation(),{passive:true});np.addEv
 const lg=document.getElementById('lang');if(lg)lg.addEventListener('click',()=>setTimeout(()=>{document.querySelectorAll('.note .more').forEach(b=>b.textContent=T(b.parentNode.classList.contains('open')?'收合':'展開全文'));nts.textContent=T(np.classList.contains('open')?'收合':'展開')},0));
 });
 </script><script>addEventListener('DOMContentLoaded',()=>{const f=document.getElementById('works');if(!f)return;const ph=f.previousElementSibling,nav=document.getElementById('nav'),tabs=f.querySelector('.ftabs');
-const ends=()=>{const w=[...document.querySelectorAll('section.work')].filter(x=>!x.classList.contains('hide')&&x.offsetParent);return w.length?w[w.length-1]:null};
+const secs=[...document.querySelectorAll('section.work')],pills=[...tabs.querySelectorAll('button')];const ends=()=>secs[secs.length-1]||null;let lockT=0,cur='';
+const setAct=k=>{if(k===cur)return;cur=k;pills.forEach(x=>{const o=x.dataset.f==k;x.classList.toggle('on',o);x.setAttribute('aria-selected',o)});const a=tabs.querySelector('.on');if(a&&tabs.scrollWidth>tabs.clientWidth)tabs.scrollTo({left:a.offsetLeft-tabs.clientWidth/2+a.offsetWidth/2,behavior:'smooth'})};
+const spy=()=>{if(performance.now()<lockT)return;const line=Math.max(f.offsetHeight,ph.offsetHeight)-4;let k='all';for(const x of secs)if(x.getBoundingClientRect().top<=line)k=x.id;const L=secs[secs.length-1];if(k!='all'&&L&&L.getBoundingClientRect().top<innerHeight*.5)k=L.id;setAct(k)};
 let on=false,tk=0;const upd=()=>{tk=0;const ref=on?ph:f,top=ref.getBoundingClientRect().top,h=f.offsetHeight,last=ends(),bot=last?last.getBoundingClientRect().bottom:0;
 const want=!document.body.classList.contains('old')&&f.getClientRects().length>0&&top<=1&&bot>Math.max(h+40,innerHeight*.45);
-if(want!==on){on=want;if(on){ph.style.height=h+'px';ph.classList.add('on');f.classList.add('fix')}else{f.classList.remove('fix');ph.classList.remove('on')}document.body.classList.toggle('wk',on)}};
+if(want!==on){on=want;if(on){ph.style.height=h+'px';ph.classList.add('on');f.classList.add('fix')}else{f.classList.remove('fix');ph.classList.remove('on')}document.body.classList.toggle('wk',on)}spy()};
 const req=()=>upd();window.__fbUpd=upd;addEventListener('scroll',req,{passive:true});addEventListener('resize',req);new MutationObserver(req).observe(document.body,{attributes:true,attributeFilter:['class']});upd();
-window.__worksTop=()=>{const ref=on?ph:f;const y=Math.round(ref.getBoundingClientRect().top+scrollY);const a=tabs.querySelector('.on');if(a)tabs.scrollTo({left:a.offsetLeft-tabs.clientWidth/2+a.offsetWidth/2,behavior:'smooth'});
-if(Math.abs(scrollY-y)<80)return;window.__lenis?__lenis.scrollTo(y,{duration:.9,force:true}):scrollTo({top:y,behavior:'smooth'});setTimeout(req,50)};
+const go=y=>{y=Math.max(0,Math.round(y));if(Math.abs(scrollY-y)<4)return;window.__lenis?__lenis.scrollTo(y,{duration:.9,force:true}):scrollTo({top:y,behavior:'smooth'})};
+window.__worksGo=k=>{setAct(k);lockT=performance.now()+1100;setTimeout(()=>{lockT=0;spy()},1150);const ref=on?ph:f;
+if(k=='all'){go(ref.getBoundingClientRect().top+scrollY);return}const t=document.getElementById(k);if(!t)return;
+const barH=f.offsetHeight;go(t.getBoundingClientRect().top+scrollY-barH+8)};
 f.querySelector('.fl').addEventListener('click',e=>{e.preventDefault();window.__lenis?__lenis.scrollTo(0,{duration:1.2}):scrollTo({top:0,behavior:'smooth'})});
 const lg=document.getElementById('lang');lg&&lg.addEventListener('click',()=>setTimeout(()=>{if(on)ph.style.height=f.offsetHeight+'px'},50))});</script></body></html>
