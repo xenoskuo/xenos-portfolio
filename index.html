@@ -159,6 +159,7 @@ body.back:not(.old) .hero .rv,body.back:not(.old) .hero .av,body.back:not(.old) 
 <p style="margin-top:40px;font-size:13px">© 2026 Xenos Kuo</p></div></footer>
 <div id="lb" role="dialog" aria-modal="true"><button class="x" aria-label="關閉">✕</button><button class="p" aria-label="上一張">‹</button><img alt=""><button class="n" aria-label="下一張">›</button><div class="c"></div></div>
 <script>
+if('scrollRestoration' in history)history.scrollRestoration='manual';
 (()=>{const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,nav=document.getElementById('nav');
 document.querySelectorAll('.grid').forEach(g=>[...g.children].forEach((c,i)=>c.style.transitionDelay=(i%(g.classList.contains('agrid')?3:2))*100+'ms'));
 document.querySelectorAll('.hero .rv').forEach((c,i)=>c.style.transitionDelay=i*120+'ms');
@@ -247,7 +248,7 @@ addEventListener('DOMContentLoaded',()=>{
 const btn=document.getElementById('mode'),wipe=document.getElementById('wipe'),nav=document.getElementById('nav'),rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isOld=()=>document.body.classList.contains('old');
 const apply=o=>{document.body.classList.toggle('old',o);if(!o)document.body.classList.add('back');btn.textContent=o?'新作品':'舊作品';btn.setAttribute('aria-pressed',o);document.title=o?'Xenos 郭吉峰｜舊作品 Archive':'Xenos 郭吉峰｜視覺 ＆ UI 介面設計師 Portfolio';
-window.__lenis?__lenis.scrollTo(0,{immediate:true}):scrollTo(0,0);
+const top=()=>{window.__lenis&&__lenis.scrollTo(0,{immediate:true,force:true});document.documentElement.scrollTop=0;document.body.scrollTop=0;scrollTo(0,0)};top();requestAnimationFrame(top);setTimeout(top,60);setTimeout(top,300);
 if(window.ScrollTrigger){ScrollTrigger.refresh();if(o&&!rm){gsap.fromTo('.atitle .ch',{yPercent:120,rotate:6},{yPercent:0,rotate:0,duration:1,stagger:.06,ease:'power4.out'});gsap.fromTo('.ahero .kicker,.alead',{y:20,opacity:0},{y:0,opacity:1,duration:.8,stagger:.15,delay:.3})}}};
 const go=o=>{if(o==isOld())return;nav.classList.remove('m');document.querySelector('.burger').setAttribute('aria-expanded',false);
 if(rm||!window.gsap){apply(o);return}
