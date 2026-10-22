@@ -207,7 +207,23 @@ body.old .logo-zh{border-color:rgba(42,36,29,.3);color:var(--txt)}
 }
 @media (min-width:761px) and (max-width:1100px){.links{gap:18px}.links a{font-size:13px}nav .wrap{gap:14px}.tools{gap:6px}.mode{padding:0 12px}.tsep{display:none}}
 @media (max-width:760px){.logo-svg{height:16px}.logo-zh{font-size:13px;margin-left:9px;padding-left:9px}.qi{width:32px;height:32px}.lang{height:32px;min-width:38px;line-height:30px;padding:0 9px}.tools{gap:5px}.mode{height:40px;margin:14px 24px}}
-</style><style>.hero .hsub{margin:14px 0 0;font-size:clamp(15px,1.9vw,20px);letter-spacing:.18em;color:#d6c79a;font-weight:500}.hero .hsub:before,.hero .hsub:after{content:"";display:inline-block;width:28px;height:1px;background:rgba(246,231,176,.5);vertical-align:middle;margin:0 12px}@media (max-width:480px){.hero .hsub{letter-spacing:.08em}.hero .hsub:before,.hero .hsub:after{width:14px;margin:0 8px}}</style><style>.logo{flex-direction:column;align-items:stretch;gap:4px;width:max-content}.logo-sub i{font-style:normal}.logo-sub{display:flex;justify-content:space-between;font:600 8.5px/1 "Noto Sans",system-ui,sans-serif;color:currentColor;opacity:.85;font-style:normal;letter-spacing:0;padding-left:1px}.logo-zh{display:none}@media (max-width:760px){.logo-sub{font-size:7.5px}}</style></head><body><div id="prog"></div><div id="wipe"></div>
+</style><style>.hero .hsub{margin:14px 0 0;font-size:clamp(15px,1.9vw,20px);letter-spacing:.18em;color:#d6c79a;font-weight:500}.hero .hsub:before,.hero .hsub:after{content:"";display:inline-block;width:28px;height:1px;background:rgba(246,231,176,.5);vertical-align:middle;margin:0 12px}@media (max-width:480px){.hero .hsub{letter-spacing:.08em}.hero .hsub:before,.hero .hsub:after{width:14px;margin:0 8px}}</style><style>.logo{flex-direction:column;align-items:stretch;gap:4px;width:max-content}.logo-sub i{font-style:normal}.logo-sub{display:flex;justify-content:space-between;font:600 8.5px/1 "Noto Sans",system-ui,sans-serif;color:currentColor;opacity:.85;font-style:normal;letter-spacing:0;padding-left:1px}.logo-zh{display:none}@media (max-width:760px){.logo-sub{font-size:7.5px}}</style><style>
+.rdl{position:relative;display:inline-flex}
+.rmenu{position:absolute;top:calc(100% + 10px);right:0;z-index:120;min-width:150px;padding:6px;border-radius:12px;background:rgba(10,20,38,.97);border:1px solid rgba(246,231,176,.45);box-shadow:0 18px 40px -12px rgba(0,0,0,.8),0 0 18px -6px rgba(246,231,176,.35);display:grid;gap:2px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .2s,transform .2s,visibility 0s .2s}
+.rmenu:before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+.rmenu a{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:9px 12px;border-radius:8px;color:var(--txt);text-decoration:none;font-size:13px;letter-spacing:.04em;white-space:nowrap;transform:none!important}
+.rmenu a:after{content:"PDF ↓";font:700 9px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;color:var(--gold2)}
+.rmenu a:hover,.rmenu a:focus-visible{background:rgba(246,231,176,.12);color:var(--gold);outline:none}
+.rdl.open .rmenu{opacity:1;visibility:visible;transform:none;transition:opacity .2s,transform .2s,visibility 0s}
+@media (hover:hover) and (pointer:fine){.rdl:hover .rmenu{opacity:1;visibility:visible;transform:none;transition:opacity .2s,transform .2s,visibility 0s}}
+footer .rdl .rmenu{top:auto;bottom:calc(100% + 10px);right:auto;left:50%;transform:translate(-50%,6px)}
+footer .rdl .rmenu:before{top:auto;bottom:-12px}
+footer .rdl.open .rmenu{transform:translate(-50%,0)}
+@media (hover:hover) and (pointer:fine){footer .rdl:hover .rmenu{transform:translate(-50%,0)}}
+body.old .rmenu{background:#fbf7ef;border-color:var(--gold);box-shadow:4px 4px 0 rgba(42,36,29,.15)}
+body.old .rmenu a{color:var(--txt)}body.old .rmenu a:hover,body.old .rmenu a:focus-visible{background:rgba(194,65,45,.08);color:var(--gold)}
+@media (prefers-reduced-motion:reduce){.rmenu{transition:none}}
+</style></head><body><div id="prog"></div><div id="wipe"></div>
 <nav class="top" id="nav"><div class="wrap"><a class="logo" href="#top" aria-label="Xenos 郭吉峰 Portfolio"><svg class="logo-svg" role="img" aria-label="Xenos" height="50" viewBox="0 0 236 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#logoclip)">
 <path d="M92.686 36.625L102.92 38.3333C101.589 42.0833 99.5085 44.9583 96.6797 46.9167C93.8509 48.875 90.2732 49.875 86.03 49.875C79.2907 49.875 74.2986 47.6667 71.0538 43.25C68.4745 39.7083 67.2265 35.25 67.2265 29.8333C67.2265 23.375 68.8905 18.3333 72.2602 14.7083C75.6298 11.0833 79.8731 9.25 85.0315 9.25C90.814 9.25 95.3485 11.1667 98.7181 15C102.046 18.8333 103.669 24.6667 103.502 32.5417H77.7514C77.8346 35.5833 78.6667 37.9583 80.2475 39.6667C81.8283 41.375 83.8251 42.2083 86.1548 42.2083C87.7772 42.2083 89.1084 41.75 90.2316 40.875C91.3548 40 92.1452 38.5833 92.7276 36.625H92.686ZM93.2685 26.25C93.1853 23.2917 92.4364 21 90.9804 19.4583C89.5244 17.9167 87.7356 17.125 85.6556 17.125C83.4091 17.125 81.5787 17.9583 80.0811 19.5833C78.5835 21.2083 77.9178 23.4583 77.9178 26.25H93.2685Z" fill="currentColor"/>
@@ -429,4 +445,20 @@ const av=document.querySelector('.hero .av');let taps=[];if(av)av.addEventListen
 (()=>{const m=document.getElementById('mode'),t=document.querySelector('.tools'),L=document.querySelector('.links');if(!m||!t||!L)return;
 const sep=document.createElement('span');sep.className='tsep';sep.setAttribute('aria-hidden','true');
 const mq=matchMedia('(min-width:761px)');const f=()=>{if(mq.matches){t.prepend(m);m.after(sep)}else{sep.remove();L.appendChild(m)}};f();mq.addEventListener('change',f)})();
+</script><script>
+addEventListener('DOMContentLoaded',()=>{
+const F=[['中文版','Xenos_Kuo_Resume.pdf','zh-Hant'],['English','Xenos_Kuo_Resume_EN.pdf','en']];let n=0;
+document.querySelectorAll('a[data-pdf]').forEach(a=>{const w=document.createElement('span');w.className='rdl';a.parentNode.insertBefore(w,a);w.appendChild(a);
+const id='rmenu'+(n++),m=document.createElement('div');m.className='rmenu';m.id=id;m.setAttribute('role','menu');
+m.innerHTML=F.map(([t,h,l])=>`<a role="menuitem" href="${h}" hreflang="${l}" download target="_blank" rel="noopener">${t}</a>`).join('');w.appendChild(m);
+a.setAttribute('aria-haspopup','menu');a.setAttribute('aria-expanded','false');a.setAttribute('aria-controls',id);a.removeAttribute('download');
+const set=o=>{w.classList.toggle('open',o);a.setAttribute('aria-expanded',o)};
+a.addEventListener('click',e=>{e.preventDefault();const o=!w.classList.contains('open');document.querySelectorAll('.rdl.open').forEach(x=>{x.classList.remove('open');x.firstChild.setAttribute('aria-expanded','false')});set(o);if(o&&e.detail===0)m.querySelector('a').focus()});
+a.addEventListener('keydown',e=>{if(e.key=='ArrowDown'){e.preventDefault();set(true);m.querySelector('a').focus()}});
+m.addEventListener('keydown',e=>{const it=[...m.querySelectorAll('a')],i=it.indexOf(document.activeElement);if(e.key=='ArrowDown'){e.preventDefault();it[(i+1)%it.length].focus()}if(e.key=='ArrowUp'){e.preventDefault();it[(i-1+it.length)%it.length].focus()}});
+m.addEventListener('click',()=>setTimeout(()=>set(false),50));
+let ht;w.addEventListener('pointerenter',e=>{if(e.pointerType=='mouse'){clearTimeout(ht);set(true)}});w.addEventListener('pointerleave',e=>{if(e.pointerType=='mouse')ht=setTimeout(()=>{if(!w.contains(document.activeElement))set(false)},180)});w.addEventListener('focusout',e=>{if(!w.contains(e.relatedTarget))set(false)})});
+document.addEventListener('pointerdown',e=>{document.querySelectorAll('.rdl.open').forEach(w=>{if(!w.contains(e.target)){w.classList.remove('open');w.firstChild.setAttribute('aria-expanded','false')}})});
+document.addEventListener('keydown',e=>{if(e.key=='Escape')document.querySelectorAll('.rdl.open').forEach(w=>{w.classList.remove('open');w.firstChild.setAttribute('aria-expanded','false');w.firstChild.focus()})});
+});
 </script></body></html>
