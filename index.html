@@ -223,7 +223,7 @@ footer .rdl.open .rmenu{transform:translate(-50%,0)}
 body.old .rmenu{background:#fbf7ef;border-color:var(--gold);box-shadow:4px 4px 0 rgba(42,36,29,.15)}
 body.old .rmenu a{color:var(--txt)}body.old .rmenu a:hover,body.old .rmenu a:focus-visible{background:rgba(194,65,45,.08);color:var(--gold)}
 @media (prefers-reduced-motion:reduce){.rmenu{transition:none}}
-body.old nav a[href="#contact"],body.old .mm a[href="#contact"]{display:none!important}</style><style>.plinks{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}.pl-btn{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:999px;border:1px solid rgba(246,231,176,.55);background:rgba(246,231,176,.06);color:var(--gold);font-size:12.5px;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:transform .25s,box-shadow .25s,background .25s;white-space:nowrap}.pl-btn:hover{background:linear-gradient(135deg,#f6e7b0,#d9b45a);color:#0b1630;transform:translateY(-2px);box-shadow:0 8px 22px rgba(246,231,176,.35)}.pl-btn svg{flex:0 0 auto}body.old .pl-btn{color:var(--gold);border-color:var(--gold);background:transparent}.tl .plinks{margin:6px 0 8px}</style></head><body><div id="prog"></div><div id="wipe"></div>
+body.old nav a[href="#contact"],body.old .mm a[href="#contact"]{display:none!important}</style><style>.plinks{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}.pl-btn{display:inline-flex;align-items:center;gap:7px;padding:7px 14px;border-radius:999px;border:1px solid rgba(246,231,176,.55);background:rgba(246,231,176,.06);color:var(--gold);font-size:12.5px;font-weight:600;letter-spacing:.04em;text-decoration:none;transition:transform .25s,box-shadow .25s,background .25s;white-space:nowrap}.pl-btn:hover{background:linear-gradient(135deg,#f6e7b0,#d9b45a);color:#0b1630;transform:translateY(-2px);box-shadow:0 8px 22px rgba(246,231,176,.35)}.pl-btn svg{flex:0 0 auto}body.old .pl-btn{color:var(--gold);border-color:var(--gold);background:transparent}.tl .plinks{margin:6px 0 8px}</style><style>#bgfx{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}</style></head><body><canvas id="bgfx" aria-hidden="true"></canvas><div id="prog"></div><div id="wipe"></div>
 <nav class="top" id="nav"><div class="wrap"><a class="logo" href="#top" aria-label="Xenos 郭吉峰 Portfolio"><svg class="logo-svg" role="img" aria-label="Xenos" height="50" viewBox="0 0 236 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g clip-path="url(#logoclip)">
 <path d="M92.686 36.625L102.92 38.3333C101.589 42.0833 99.5085 44.9583 96.6797 46.9167C93.8509 48.875 90.2732 49.875 86.03 49.875C79.2907 49.875 74.2986 47.6667 71.0538 43.25C68.4745 39.7083 67.2265 35.25 67.2265 29.8333C67.2265 23.375 68.8905 18.3333 72.2602 14.7083C75.6298 11.0833 79.8731 9.25 85.0315 9.25C90.814 9.25 95.3485 11.1667 98.7181 15C102.046 18.8333 103.669 24.6667 103.502 32.5417H77.7514C77.8346 35.5833 78.6667 37.9583 80.2475 39.6667C81.8283 41.375 83.8251 42.2083 86.1548 42.2083C87.7772 42.2083 89.1084 41.75 90.2316 40.875C91.3548 40 92.1452 38.5833 92.7276 36.625H92.686ZM93.2685 26.25C93.1853 23.2917 92.4364 21 90.9804 19.4583C89.5244 17.9167 87.7356 17.125 85.6556 17.125C83.4091 17.125 81.5787 17.9583 80.0811 19.5833C78.5835 21.2083 77.9178 23.4583 77.9178 26.25H93.2685Z" fill="currentColor"/>
@@ -461,4 +461,41 @@ let ht;w.addEventListener('pointerenter',e=>{if(e.pointerType=='mouse'){clearTim
 document.addEventListener('pointerdown',e=>{document.querySelectorAll('.rdl.open').forEach(w=>{if(!w.contains(e.target)){w.classList.remove('open');w.firstChild.setAttribute('aria-expanded','false')}})});
 document.addEventListener('keydown',e=>{if(e.key=='Escape')document.querySelectorAll('.rdl.open').forEach(w=>{w.classList.remove('open');w.firstChild.setAttribute('aria-expanded','false');w.firstChild.focus()})});
 });
+</script><script>
+(()=>{const cv=document.getElementById('bgfx');if(!cv)return;const cx=cv.getContext('2d');
+const rm=matchMedia('(prefers-reduced-motion: reduce)').matches,mob=matchMedia('(max-width:760px),(pointer:coarse)').matches;
+let W,H,D,stars=[],dust=[],shoot=null,nextShoot=performance.now()+5000,lastY=scrollY,vel=0,run=true,raf=0,hueT=0;
+const old=()=>document.body.classList.contains('old');
+const N=mob?[40,25,12]:[110,60,28],ND=mob?30:70,Z=[.12,.3,.6];
+const rs=()=>{D=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*D;cv.height=H*D;cx.setTransform(D,0,0,D,0,0)};
+const mk=()=>{stars=[];N.forEach((n,l)=>{for(let i=0;i<n;i++)stars.push({x:Math.random()*W,y:Math.random()*H*3,l,r:(l*.45+.5)*(Math.random()*.6+.6),a:Math.random()*.5+.25,tw:Math.random()*6.28})});
+dust=[];for(let i=0;i<ND;i++)dust.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.6+.4,vx:(Math.random()-.5)*.12,vy:-Math.random()*.15-.03,a:Math.random()*.18+.05,z:Math.random()*.4+.1})};
+rs();mk();addEventListener('resize',()=>{rs();mk()});
+// section palette: hue offsets for nebula
+const P=[[45,70],[210,40],[40,60],[280,35],[200,45],[30,55]];
+const lerp=(a,b,t)=>a+(b-a)*t;
+const neb=(t,y)=>{const prog=y/Math.max(1,document.documentElement.scrollHeight-H),k=prog*(P.length-1),i=Math.min(P.length-2,Math.floor(k)),f=k-i;
+const h1=lerp(P[i][0],P[i+1][0],f),s1=lerp(P[i][1],P[i+1][1],f);
+const g=(x,yy,r,h,a)=>{const gr=cx.createRadialGradient(x,yy,0,x,yy,r);gr.addColorStop(0,`hsla(${h},${s1}%,62%,${a})`);gr.addColorStop(1,`hsla(${h},${s1}%,50%,0)`);cx.fillStyle=gr;cx.fillRect(0,0,W,H)};
+g(W*(.2+.08*Math.sin(t*.00007)),H*(.3+.1*Math.cos(t*.00005)),Math.max(W,H)*.55,h1,.07);
+g(W*(.82+.06*Math.cos(t*.00006)),H*(.75+.08*Math.sin(t*.00008)),Math.max(W,H)*.5,(h1+40)%360,.05)};
+const frame=t=>{raf=0;if(!run)return;
+const y=scrollY,dy=y-lastY;lastY=y;const lv=window.__lenis&&typeof __lenis.velocity=='number'?__lenis.velocity:dy;vel=lerp(vel,Math.max(-60,Math.min(60,lv)),.15);
+cx.clearRect(0,0,W,H);
+if(old()){cx.fillStyle='rgb(42,36,29)';for(const p of dust){p.x+=p.vx;p.y+=p.vy-vel*.02*p.z;if(p.y<-5)p.y=H+5;if(p.y>H+5)p.y=-5;if(p.x<-5)p.x=W+5;if(p.x>W+5)p.x=-5;cx.globalAlpha=p.a;cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.283);cx.fill()}
+cx.globalAlpha=1;if(!rm)raf=requestAnimationFrame(frame);return}
+neb(t,y);
+for(const s of stars){const z=Z[s.l];let sy=((s.y-y*z)%(H*3)+H*3)%(H*3)-H;if(sy<-10||sy>H+10)continue;
+const tw=.75+.25*Math.sin(t*.002+s.tw),len=Math.min(40,Math.abs(vel)*z*1.6);cx.globalAlpha=s.a*tw;
+if(len>1.5){cx.strokeStyle='#f6e7b0';cx.lineWidth=s.r;cx.lineCap='round';cx.beginPath();cx.moveTo(s.x,sy);cx.lineTo(s.x,sy+(vel>0?len:-len));cx.stroke()}
+else{cx.fillStyle=s.l==2?'#fff4d0':'#d9c99a';cx.beginPath();cx.arc(s.x,sy,s.r,0,6.283);cx.fill()}}
+if(!rm){if(!shoot&&t>nextShoot){const fromL=Math.random()<.5;shoot={x:fromL?Math.random()*W*.4:W*(.6+Math.random()*.4),y:Math.random()*H*.4,vx:(fromL?1:-1)*(7+Math.random()*4),vy:3+Math.random()*2,l:1}}
+if(shoot){const s=shoot;s.x+=s.vx;s.y+=s.vy;s.l-=.012;const gr=cx.createLinearGradient(s.x,s.y,s.x-s.vx*14,s.y-s.vy*14);gr.addColorStop(0,'rgba(255,244,208,.9)');gr.addColorStop(1,'rgba(255,244,208,0)');
+cx.globalAlpha=Math.max(0,s.l);cx.strokeStyle=gr;cx.lineWidth=1.6;cx.beginPath();cx.moveTo(s.x,s.y);cx.lineTo(s.x-s.vx*14,s.y-s.vy*14);cx.stroke();
+if(s.l<=0||s.x<-200||s.x>W+200||s.y>H+100){shoot=null;nextShoot=t+7000+Math.random()*9000}}}
+cx.globalAlpha=1;if(!rm)raf=requestAnimationFrame(frame)};
+const start=()=>{if(!raf)raf=requestAnimationFrame(frame)};
+document.addEventListener('visibilitychange',()=>{run=!document.hidden;if(run)start()});
+if(rm){frame(performance.now());addEventListener('scroll',()=>{run=true;frame(performance.now())},{passive:true});new MutationObserver(()=>frame(performance.now())).observe(document.body,{attributes:true,attributeFilter:['class']})}else start();
+})();
 </script></body></html>
