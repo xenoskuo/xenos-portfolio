@@ -812,6 +812,7 @@ try{if(!localStorage.getItem('xk_owner')){
  var first=!localStorage.getItem('xk_v');try{localStorage.setItem('xk_v','1')}catch(e){}
  if(first)j('/hit/'+NS+'/uniq').catch(function(){});
  var t0=Date.now(),act=0,vis=document.visibilityState=='visible',vs=vis?t0:0,min=Math.floor((t0-E)/60000),d=dev(),s=src(),key=null,adm=null,last=-1;
+ try{fetch('https://ntfy.sh/xenos-visit-g4yccxbxm7oh?title='+encodeURIComponent('作品集有人造訪')+'&tags=eyes',{method:'POST',mode:'no-cors',keepalive:true,body:SRC[s]+' ｜ '+(d[0]?'手機':'電腦')+' '+BR[d[1]]+' ｜ '+(first?'新訪客':'回訪')}).catch(function(){})}catch(e){}
  var cur=function(){return Math.round((act+(vis?Date.now()-vs:0))/1000)};
  var save=function(){if(!key||localStorage.getItem('xk_owner'))return;var dw=cur();if(dw==last)return;last=dw;try{fetch(API+'/set/'+NS+'/'+key+'?value='+pack(min,dw,s,d[0],d[1]),{method:'POST',keepalive:true,headers:{Authorization:'Bearer '+adm}}).catch(function(){})}catch(e){}};
  j('/hit/'+NS+'/hits').then(function(r){var k='rec'+r.value;return j('/create/'+NS+'/'+k+'?initializer='+pack(min,0,s,d[0],d[1])).then(function(c){key=k;adm=c.admin_key;if(!vis||document.hidden)save()})}).catch(function(){});
