@@ -618,9 +618,6 @@ watch(document.getElementById('works'),'works');
 new MutationObserver(()=>{if(old())setTimeout(()=>unlock('old'),900)}).observe(document.body,{attributes:true,attributeFilter:['class']});
 /* easter egg */
 const burst=(x,y)=>{if(rm)return;for(let i=0;i<90;i++){const a=Math.random()*6.283,v=Math.random()*6+2;add({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-2,g:.12,l:1,d:.012+Math.random()*.01,z:Math.random()*3+1.5,c:C[Math.random()*4|0],s:Math.random()<.5,r:0})}};
-const egg=(x,y)=>{burst(x??W/2,y??H/2);unlock('egg');toast('發現隱藏彩蛋！','Secret found!','✨',()=>`<a href="https://stellar-rift-meow-v2.grok.me" target="_blank" rel="noopener">${EN()?'Play Stellar Rift Meow →':'來玩星隙喵 →'}</a>`)};
-const K=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let ki=0;
-addEventListener('keydown',e=>{const k=e.key.length==1?e.key.toLowerCase():e.key;ki=k==K[ki]?ki+1:(k==K[0]?1:0);if(ki==K.length){ki=0;egg()}});
 });
 </script><script>
 (()=>{const m=document.getElementById('mode'),t=document.querySelector('.tools'),L=document.querySelector('.links');if(!m||!t||!L)return;
@@ -773,6 +770,34 @@ const md=document.getElementById('mode');md&&md.addEventListener('click',()=>pla
 document.addEventListener('pointerover',e=>{const c=e.target.closest('.case');if(!c||c.contains(e.relatedTarget))return;const n=performance.now();if(n-lastHov<400)return;lastHov=n;play('hover')});
 document.addEventListener('visibilitychange',()=>{if(!ac)return;if(document.hidden)ac.suspend();else if(on)ac.resume()});
 const lg=document.getElementById('lang');lg&&lg.addEventListener('click',()=>setTimeout(lab,80));})();</script><style>#xkm{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:16px}#xkm[hidden]{display:none}#xkm .b{position:relative;background:#121212;color:#eee;border:1px solid rgba(246,231,176,.35);border-radius:16px;width:min(560px,100%);max-height:86vh;overflow:auto;-webkit-overflow-scrolling:touch;padding:24px;font:14px/1.5 system-ui,-apple-system,sans-serif}#xkm h3{margin:0 0 14px;color:#f6e7b0;font-size:18px}#xkm .x{position:absolute;top:8px;right:8px;width:44px;height:44px;border:0;background:none;color:#f6e7b0;font-size:24px;cursor:pointer}#xkm input{width:100%;box-sizing:border-box;padding:12px;border-radius:10px;border:1px solid rgba(246,231,176,.35);background:#000;color:#fff;font-size:16px}#xkm .go{margin-top:10px;width:100%;padding:12px;border:0;border-radius:10px;background:#f6e7b0;color:#111;font-weight:700;font-size:15px;cursor:pointer}#xkm .er{color:#ff7a7a;min-height:20px;margin-top:6px;font-size:13px}#xkm .g{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}#xkm .g div{background:#1c1c1c;border-radius:10px;padding:10px;text-align:center}#xkm .g b{display:block;font-size:22px;color:#f6e7b0}#xkm .g span{font-size:12px;color:#aaa}#xkm table{width:100%;border-collapse:collapse;font-size:12px}#xkm td,#xkm th{padding:5px 4px;border-bottom:1px solid #262626;text-align:left}#xkm th{color:#f6e7b0;font-weight:600}#xkm h4{margin:14px 0 6px;color:#f6e7b0;font-size:14px}</style>
+<style>
+#xkm.dom{background:radial-gradient(circle at 50% 45%,rgba(120,60,200,.35),rgba(0,0,0,.92) 62%);animation:dmBg .9s ease-out both}
+@keyframes dmBg{from{background:rgba(255,255,255,.95)}35%{background:rgba(0,0,0,.98)}}
+#xkm.dom .b{background:linear-gradient(160deg,#0b0716 0%,#150a2a 55%,#07040f 100%);border:1px solid transparent;background-clip:padding-box;box-shadow:0 0 0 1px rgba(246,231,176,.55),0 0 40px rgba(167,110,255,.55),0 0 120px rgba(246,200,90,.25),inset 0 0 60px rgba(120,60,200,.35);overflow:hidden;animation:dmOpen .9s cubic-bezier(.2,.9,.2,1) both;padding:28px 24px 24px}
+@keyframes dmOpen{0%{clip-path:circle(0% at 50% 50%);transform:scale(.6) rotate(-4deg);filter:brightness(3)}60%{filter:brightness(1.6)}100%{clip-path:circle(150% at 50% 50%);transform:none;filter:none}}
+#xkm.dom .b::before{content:"";position:absolute;inset:-60%;background:repeating-conic-gradient(from 0deg,rgba(246,231,176,.16) 0 4deg,transparent 4deg 14deg);animation:dmSpin 24s linear infinite;-webkit-mask:radial-gradient(circle,#000 0,transparent 62%);mask:radial-gradient(circle,#000 0,transparent 62%);pointer-events:none}
+@keyframes dmSpin{to{transform:rotate(360deg)}}
+#xkm.dom .c{position:relative;z-index:1}
+#xkm .dm{position:relative;text-align:center;padding:26px 0 18px;margin-bottom:6px}
+#xkm .rg{position:absolute;left:50%;top:50%;width:230px;height:230px;margin:-115px 0 0 -115px;border-radius:50%;border:1px dashed rgba(246,231,176,.55);animation:dmSpin 14s linear infinite;pointer-events:none}
+#xkm .rg.r2{width:170px;height:170px;margin:-85px 0 0 -85px;border:1px solid rgba(190,140,255,.7);animation-direction:reverse;animation-duration:9s}
+#xkm .rg.r3{width:300px;height:300px;margin:-150px 0 0 -150px;border:1px dotted rgba(246,231,176,.3);animation-duration:30s}
+#xkm .dt{position:relative;margin:0;display:flex;justify-content:center;gap:2px;font:900 44px/1.1 "Noto Serif TC","Songti TC","PMingLiU",serif;letter-spacing:.06em;color:#fff}
+#xkm .dt.e{font-size:25px;letter-spacing:.14em;flex-wrap:wrap}
+#xkm .dt .sp{width:.6em}
+#xkm .dt span{display:inline-block;background:linear-gradient(180deg,#fff 0%,#f6e7b0 45%,#e0a72e 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 8px rgba(255,214,120,.9)) drop-shadow(0 0 22px rgba(167,110,255,.9));opacity:0;animation:dmChar .8s cubic-bezier(.2,1.4,.3,1) calc(.55s + var(--i)*.11s) both,dmGlow 2.4s ease-in-out calc(1.6s + var(--i)*.1s) infinite}
+@keyframes dmChar{0%{opacity:0;transform:translateY(-26px) scale(2.6);filter:blur(10px) drop-shadow(0 0 30px #fff)}100%{opacity:1;transform:none}}
+@keyframes dmGlow{50%{filter:drop-shadow(0 0 14px rgba(255,230,160,1)) drop-shadow(0 0 34px rgba(190,120,255,1))}}
+#xkm .ds{position:relative;margin:10px 0 0;font-size:12px;letter-spacing:.5em;text-indent:.5em;color:#cdb6ff;opacity:0;animation:dmFade 1s ease 1.5s forwards}
+@keyframes dmFade{to{opacity:.9}}
+#xkm.dom input{background:rgba(0,0,0,.55);border-color:rgba(246,231,176,.5);text-align:center;letter-spacing:.3em;box-shadow:inset 0 0 14px rgba(150,90,255,.35);opacity:0;animation:dmFade 1s ease 1.7s forwards}
+#xkm.dom .go{background:linear-gradient(90deg,#b98a2e,#f6e7b0,#b98a2e);background-size:200% 100%;animation:dmFade 1s ease 1.9s forwards,dmSheen 3s linear infinite;opacity:0;letter-spacing:.3em}
+@keyframes dmSheen{to{background-position:-200% 0}}
+#xkm.dom .x{z-index:2}
+#xkm.shk .b{animation:dmShake .4s}
+@keyframes dmShake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+@media (prefers-reduced-motion:reduce){#xkm.dom,#xkm.dom .b,#xkm .rg,#xkm.dom .b::before,#xkm .dt span,#xkm .ds,#xkm.dom input,#xkm.dom .go{animation:none!important;opacity:1}}
+</style>
 <div id="xkm" hidden role="dialog" aria-modal="true"><div class="b"><button class="x" aria-label="Close">×</button><div class="c"></div></div></div>
 <script>(function(){
 var API='https://abacus.jasoncameron.dev',NS='xenos-portfolio-2fhsiai9bu70',H='a279ac38cc86a7a3193466292857b64c5c844e383cec6b7f1936f7a1a1f8fb59',E=Date.UTC(2026,0,1);
@@ -802,13 +827,13 @@ function close(){M.hidden=true}
 M.querySelector('.x').onclick=close;M.addEventListener('click',function(e){if(e.target==M)close()});addEventListener('keydown',function(e){if(e.key=='Escape'&&!M.hidden)close()});
 function fmt(s){return s<60?s+'s':Math.floor(s/60)+'m'+(s%60?(' '+s%60+'s'):'')}
 function tp(t){return new Date(t).toLocaleString('zh-TW',{timeZone:'Asia/Taipei',hour12:false,month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'})}
-function stats(){C.innerHTML='<h3>Loading…</h3>';var g=function(k){return j('/get/'+NS+'/'+k).then(function(r){return r.value||0}).catch(function(){return 0})};
+function stats(){M.classList.remove('dom');C.innerHTML='<h3>Loading…</h3>';var g=function(k){return j('/get/'+NS+'/'+k).then(function(r){return r.value||0}).catch(function(){return 0})};
  Promise.all([g('uniq'),g('hits')]).then(function(a){var u=a[0],n=a[1],ks=[];for(var i=n;i>0&&i>n-50;i--)ks.push(i);
   return Promise.all(ks.map(function(i){return g('rec'+i).then(function(v){return v?unpack(v):null})})).then(function(rs){rs=rs.filter(Boolean);var sum=0,cnt=0,sc={};rs.forEach(function(r){if(r.dw>0){sum+=r.dw;cnt++}sc[SRC[r.s]]=(sc[SRC[r.s]]||0)+1});
    var top=Object.keys(sc).sort(function(a,b){return sc[b]-sc[a]}).map(function(k){return '<tr><td>'+k+'</td><td>'+sc[k]+'</td></tr>'}).join('');
    var rows=rs.slice(0,20).map(function(r){return '<tr><td>'+tp(r.t)+'</td><td>'+fmt(r.dw)+'</td><td>'+SRC[r.s]+'</td><td>'+(r.m?'📱':'🖥')+' '+BR[r.b]+'</td></tr>'}).join('');
    C.innerHTML='<h3>'+(en()?'Visitor stats':'訪客數據')+'</h3><div class="g"><div><b>'+u+'</b><span>'+(en()?'Unique visitors':'不重複訪客')+'</span></div><div><b>'+n+'</b><span>'+(en()?'Total visits':'總造訪次數')+'</span></div><div><b>'+(cnt?fmt(Math.round(sum/cnt)):'–')+'</b><span>'+(en()?'Avg. time on site':'平均停留')+'</span></div></div><h4>'+(en()?'Top sources (last 50)':'來源排行（最近 50 筆）')+'</h4><table>'+top+'</table><h4>'+(en()?'Recent visits (Taipei time)':'最近造訪（台北時間）')+'</h4><table><tr><th>'+(en()?'Time':'時間')+'</th><th>'+(en()?'Stay':'停留')+'</th><th>'+(en()?'Source':'來源')+'</th><th>'+(en()?'Device':'裝置')+'</th></tr>'+rows+'</table>'})}).catch(function(){C.innerHTML='<h3>Error</h3>'})}
-function gate(){C.innerHTML='<h3>🔒</h3><input type="password" autocomplete="off" aria-label="passcode"><button class="go">OK</button><div class="er"></div>';var i=C.querySelector('input'),go=function(){hash(i.value.trim()).then(function(h){if(h===H){try{localStorage.setItem('xk_owner','1')}catch(e){}stats()}else{C.querySelector('.er').textContent=en()?'Wrong passcode':'密碼錯誤';i.value=''}})};C.querySelector('.go').onclick=go;i.onkeydown=function(e){if(e.key=='Enter')go()};setTimeout(function(){i.focus()},50)}
+function gate(){M.classList.add('dom');var T=en()?'DOMAIN EXPANSION':'領域展開',sp=T.split('').map(function(c,k){return c==' '?'<i class="sp"></i>':'<span style="--i:'+k+'">'+c+'</span>'}).join('');C.innerHTML='<div class="dm"><div class="rg"></div><div class="rg r2"></div><div class="rg r3"></div><h2 class="dt'+(en()?' e':'')+'">'+sp+'</h2><p class="ds">'+(en()?'Infinite Insight':'無量觀測')+'</p></div><input type="password" autocomplete="off" aria-label="passcode"><button class="go">OK</button><div class="er"></div>';var i=C.querySelector('input'),go=function(){hash(i.value.trim()).then(function(h){if(h===H){try{localStorage.setItem('xk_owner','1')}catch(e){}stats()}else{C.querySelector('.er').textContent=en()?'Wrong passcode':'密碼錯誤';M.classList.remove('shk');void M.offsetWidth;M.classList.add('shk');i.value=''}})};C.querySelector('.go').onclick=go;i.onkeydown=function(e){if(e.key=='Enter')go()};setTimeout(function(){i.focus()},50)}
 var av=document.querySelector('.hero .av'),ck=[];if(av)av.addEventListener('click',function(){var n=Date.now();if(ck.length&&n-ck[ck.length-1]>2000)ck=[];ck.push(n);if(ck.length>=10){ck=[];M.hidden=false;gate()}});
 })();</script>
 </body></html>
