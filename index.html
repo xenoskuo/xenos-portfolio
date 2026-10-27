@@ -783,7 +783,7 @@ const lg=document.getElementById('lang');lg&&lg.addEventListener('click',()=>set
 #xkm .rg.r2{width:170px;height:170px;margin:-85px 0 0 -85px;border:1px solid rgba(190,140,255,.7);animation-direction:reverse;animation-duration:9s}
 #xkm .rg.r3{width:300px;height:300px;margin:-150px 0 0 -150px;border:1px dotted rgba(246,231,176,.3);animation-duration:30s}
 #xkm .dt{position:relative;margin:0;display:flex;justify-content:center;gap:2px;font:900 44px/1.1 "Noto Serif TC","Songti TC","PMingLiU",serif;letter-spacing:.06em;color:#fff}
-#xkm .dt.e{font-size:25px;letter-spacing:.14em;flex-wrap:wrap}
+#xkm .dt.e{font-size:clamp(14px,4.9vw,27px);letter-spacing:.08em;flex-wrap:nowrap;white-space:nowrap;gap:0}
 #xkm .dt .sp{width:.6em}
 #xkm .dt span{display:inline-block;background:linear-gradient(180deg,#fff 0%,#f6e7b0 45%,#e0a72e 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 8px rgba(255,214,120,.9)) drop-shadow(0 0 22px rgba(167,110,255,.9));opacity:0;animation:dmChar .8s cubic-bezier(.2,1.4,.3,1) calc(.55s + var(--i)*.11s) both,dmGlow 2.4s ease-in-out calc(1.6s + var(--i)*.1s) infinite}
 @keyframes dmChar{0%{opacity:0;transform:translateY(-26px) scale(2.6);filter:blur(10px) drop-shadow(0 0 30px #fff)}100%{opacity:1;transform:none}}
