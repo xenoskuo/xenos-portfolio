@@ -621,7 +621,6 @@ const burst=(x,y)=>{if(rm)return;for(let i=0;i<90;i++){const a=Math.random()*6.2
 const egg=(x,y)=>{burst(x??W/2,y??H/2);unlock('egg');toast('發現隱藏彩蛋！','Secret found!','✨',()=>`<a href="https://stellar-rift-meow-v2.grok.me" target="_blank" rel="noopener">${EN()?'Play Stellar Rift Meow →':'來玩星隙喵 →'}</a>`)};
 const K=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let ki=0;
 addEventListener('keydown',e=>{const k=e.key.length==1?e.key.toLowerCase():e.key;ki=k==K[ki]?ki+1:(k==K[0]?1:0);if(ki==K.length){ki=0;egg()}});
-const av=document.querySelector('.hero .av');let taps=[];if(av)av.addEventListener('click',e=>{const n=Date.now();taps=taps.filter(t=>n-t<2000);taps.push(n);if(taps.length>=5){taps=[];const r=av.getBoundingClientRect();egg(r.left+r.width/2,r.top+r.height/2)}});
 });
 </script><script>
 (()=>{const m=document.getElementById('mode'),t=document.querySelector('.tools'),L=document.querySelector('.links');if(!m||!t||!L)return;
